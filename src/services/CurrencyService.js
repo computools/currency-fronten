@@ -13,4 +13,7 @@ export default {
       skip,
     }));
   },
+  getCurrencyHistory(id) {
+    return http.get(API.CURRENCY_HISTORY(id));
+  },
 };

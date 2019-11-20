@@ -3,5 +3,6 @@ export const API = {
   CURRENCY_PAGINATION: ({
     take = 10, 
     skip = 10,
-  }) => `/api/currencies?take=${take}&skip=${skip}`
+  }) => `/api/currencies?take=${take}&skip=${skip}`,
+  CURRENCY_HISTORY: id => `/api/currencies/history/${id}`,
 };

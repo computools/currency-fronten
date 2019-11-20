@@ -9,6 +9,7 @@ Vue.use(Vuex);
 const state = {
   token: '',
   currencyDetails: {},
+  currencyHistory: {},
   currencies: [],
 };
 

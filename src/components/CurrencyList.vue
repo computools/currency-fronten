@@ -7,15 +7,17 @@
       <table>
         <tr>
           <th>id</th>
+          <th>original id</th>
           <th>name</th> 
           <th>code</th>
           <th>rate</th>
         </tr>
         <tr
           v-for="currency in currencies" :key="currency.id"
-          @click="showDetailInfo(currency.id)"
+          @click="showDetailInfo(currency.originalId)"
         >
           <td>{{currency.id}}</td>
+          <td>{{currency.originalId}}</td>
           <td>{{currency.name}}</td>
           <td>{{currency.code}}</td>
           <td>{{currency.rate}}</td>
@@ -29,7 +31,8 @@
 
       <currency-details
         v-if="showDetails"
-        @changeShowBlock="showDetailsBlock"
+        @hide="hideDetailsModal($event)"
+        @show-currency-history="showCurrencyHistory($event)"
         :currencyId="currencyId"
       />
     </template>
@@ -102,12 +105,19 @@ export default {
     },
     showDetailInfo(id) {
       this.currencyId = id;
+      console.log(id, 'id')
       this.$store.dispatch('fetchCurrency', id);
       this.showDetails = true;
     },
-    showDetailsBlock(data) {
-      this.showDetails = data;      
-    }
-  }
+    hideDetailsModal() {
+      this.showDetails = false;      
+    },
+    showCurrencyHistory(id) {
+      this.$router.push({
+        name: 'history',
+        params: { id },
+      });
+    },
+  },
 }
 </script>
